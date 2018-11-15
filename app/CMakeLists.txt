@@ -5,6 +5,14 @@
 
 cmake_minimum_required(VERSION 3.4.1)
 
+if(${ANDROID_ABI} STREQUAL "armeabi-v7a")
+    include_directories(${ANDROID_SYSROOT}/usr/include/arm-linux-androidabi)
+elseif(${ANDROID_ABI} STREQUAL "arm64-v8a")
+    include_directories(${ANDROID_SYSROOT}/usr/include/aarch64-linux-android)
+else()
+    include_directories(${ANDROID_SYSROOT}/usr/include/arm-linux-androidabi)
+endif()
+
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
 # You can define multiple libraries, and CMake builds them for you.
